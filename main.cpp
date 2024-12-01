@@ -5,6 +5,49 @@
 
 double time1, timedif;
 
+
+void testingBypassingCache()
+{
+  // load first array
+  // load second array
+  // read first array
+  int rows = 1 << 20 << 5;
+  int cols = 50;
+  int *matrix1 = new int[rows * cols];
+  int *matrix2 = new int[rows * cols];
+
+  for (int i = 0; i < rows; i++)
+  {
+    for (int j = 0; j < cols; j++)
+    {
+      *(matrix1 + i * cols + j) = 1;
+    }
+  }
+
+  for (int i = 0; i < rows; i++)
+  {
+    for (int j = 0; j < cols; j++)
+    {
+      *(matrix2 + i * cols + j) = 2;
+      //_mm_stream_si128(reinterpret_cast<__m128i *>(matrix2), _mm_set1_epi32(2));
+    }
+  }
+
+  for (int i = 0; i < rows; i++)
+  {
+    for (int j = 0; j < cols; j++)
+    {
+      if (*(matrix1 + i * cols + j) != 1)
+      {
+        printf("NOT CORRECT VAL\n");
+      }
+    }
+  }
+
+  delete[] matrix1;
+  delete[] matrix2;
+}
+
 int main()
 {
   time1 = (double)clock();
@@ -75,6 +118,7 @@ int main()
   // delete[] a10;
   // delete[] a11;
   // delete[] a12;
+  testingBypassingCache();
   timedif = (((double)clock()) / CLOCKS_PER_SEC) - time1;
   printf("TIME TAKEN: %f\n", timedif);
 }
