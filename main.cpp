@@ -5,6 +5,12 @@
 
 double time1, timedif;
 
+struct devilFruit
+{
+    int type;
+    char name;
+    int inUse;
+};
 
 void testingBypassingCache()
 {
