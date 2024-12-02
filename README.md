@@ -1,9 +1,15 @@
 # cpu-memory-optimizations
-cpu cores fast, memory bottleneck
+Today cpu cores are very fast access to memory bottleneck is a common bottleneck. Below are a few techniques that can be used to optimize performance.
+
+### Write Combining
+
+### Bypassing Cache
+
+### Fitting into Cache Lines
+
 
 out of order execution
 
-write combining
 
 bypassing cache
 
