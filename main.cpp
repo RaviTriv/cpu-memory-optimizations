@@ -5,11 +5,24 @@
 
 double time1, timedif;
 
-struct devilFruit
+struct hole
 {
-    int type;
-    char name;
-    int inUse;
+    int a;
+    double b[6];
+    short c;
+    short d;
+    int e;
+    int f;
+};
+
+struct noHole
+{
+    int a;
+    short b;
+    short c;
+    double d[6];
+    int e;
+    int f;
 };
 
 void testingBypassingCache()
