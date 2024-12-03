@@ -6,7 +6,7 @@ Today CPU cores are very fast in comparision to memory access. This can be a bot
 ### Bypassing Cache
 
 ### Fitting into Cache Lines
-Reading from cache is significantly faster than reading from memory. Therefore its important to fit as much data into cache as possible. CPU cache is a collection of  cache lines, in this case each cache line is 64 bytes long and read in `words`, a fixed size of bytes. We want to optimize the way we put data into `words` such that their is minimal holes.
+Reading from cache is significantly faster than reading from memory. Therefore its important to fit as much data into cache as possible. CPU cache is a collection of  cache lines, in this case each cache line is 64 bytes long and read in `words`, a fixed size of bytes. We want to optimize the way we put data into `words` such that their are minimal holes.
 
 ```
 struct hole
@@ -23,7 +23,6 @@ In the `struct` above we use 4 bytes and then 8 bytes, for a consecutive total o
 ```
 /* size: 72, cachelines: 2, members: 6 */
 ```
-
 
 ![Memory Hole](./images/cacheline.png)
 
