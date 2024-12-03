@@ -47,7 +47,7 @@ This simple change allows us to make better use of the available space.
 /* size: 64, cachelines: 1, members: 6 */
 ```
 
-*Note: CPU cache lines size and word size can differ by hardware.
+*Note: CPU cache line and word size can differ by hardware.
 
 out of order execution
 
