@@ -4,6 +4,8 @@ Today CPU cores are very fast in comparision to memory access. This can be a bot
 ### Write Combining
 
 ### Bypassing Cache
+By default nothing is directly written to memory. Everything goes through cache, if our cache space is full we replace older cache lines. In some situations we may have data that will not be accessed again anytime soon or frequently, making it a waste to use cache space. In these situations we can bypass cache and write directly to memory.
+A simple example is we intialize two matrixs, matA and matB. We write values to matA and then write values to matB. After writing values to matB, we want to read from matA. In this case since we will not be reading values of matB anytime soon we can make use of intel's non temporal stores to write matB directly to memory. The simple example is roughly 3 times faster.
 
 ### Fitting into Cache Lines
 Reading from cache is significantly faster than reading from memory. Therefore its important to fit as much data into cache as possible. CPU cache is a collection of  cache lines, in this case each cache line is 64 bytes long and read in `words`, a fixed size of bytes. We want to optimize the way we put data into `words` such that their are minimal holes.
@@ -48,10 +50,9 @@ This simple change allows us to make better use of the available space.
 
 *Note: CPU cache line and word size can differ by hardware.
 
+### notes
 out of order execution
 
-
-bypassing cache
 
 optimizing cache access 
 
