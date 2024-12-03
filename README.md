@@ -8,6 +8,7 @@ In the example above we have 6 buffers. Illustrated is the difference between wr
 
 `NOT TAKING FULL ADVATAGE OF WRITE COMBINING TIME TAKEN: 0.927197` <br>
 `WRITE COMBINING TIME TAKEN: 0.253306` <br>
+
 We can observe a rough 3x performance improvement by better utilizing write combining in our simple example.
 
 ### Bypassing Cache
@@ -16,8 +17,10 @@ By default nothing is directly written to memory. Everything goes through cache,
 ![Non Temporal Store](./images/nonTemporalStore.png)
 
 A simple example is we intialize two matrices, matA and matB. We write values to matA and then write values to matB. After writing values to matB, we want to read from matA. In this case since we will not be reading values of matB anytime soon we can make use of non temporal stores to write matB directly to memory. 
-`NO CACHE BYPASS TIME TAKEN: 50.825197`
-`CACHE BYPASS TIME TAKEN: 15.427559`
+
+`NO CACHE BYPASS TIME TAKEN: 50.825197`<br>
+`CACHE BYPASS TIME TAKEN: 15.427559`<br>
+
 The simple example is roughly 3 times faster.
 
 ### Fitting into Cache Lines
