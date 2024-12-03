@@ -15,7 +15,10 @@ By default nothing is directly written to memory. Everything goes through cache,
 
 ![Non Temporal Store](./images/nonTemporalStore.png)
 
-A simple example is we intialize two matrixs, matA and matB. We write values to matA and then write values to matB. After writing values to matB, we want to read from matA. In this case since we will not be reading values of matB anytime soon we can make use of intel's non temporal stores to write matB directly to memory. The simple example is roughly 3 times faster.
+A simple example is we intialize two matrices, matA and matB. We write values to matA and then write values to matB. After writing values to matB, we want to read from matA. In this case since we will not be reading values of matB anytime soon we can make use of non temporal stores to write matB directly to memory. 
+`NO CACHE BYPASS TIME TAKEN: 50.825197`
+`CACHE BYPASS TIME TAKEN: 15.427559`
+The simple example is roughly 3 times faster.
 
 ### Fitting into Cache Lines
 Reading from cache is significantly faster than reading from memory. Therefore its important to fit as much data into cache as possible. CPU cache is a collection of  cache lines, in this case each cache line is 64 bytes long and read in `words`, a fixed size of bytes. We want to optimize the way we put data into `words` such that their are minimal holes.
@@ -61,25 +64,9 @@ This simple change allows us to make better use of the available space.
 *Note: CPU cache line and word size can differ by hardware.
 
 ### notes
-out of order execution
-
-
 optimizing cache access 
 
-
-reduce code footprint
--> make program smaller such that it can fit in cache
 
 Optimizing TLB usage
 -> reduce number of pages, simply can result in less TLB misses
 -> make lookup cheaper, reduce the number of higher level directory tables
-
-review TLB miss vs page fault
-
-ASLR, turn off ASLR
-
-Prefetching
-use when lots of misses occur
-_mm_prefetch intrinsic
-
-Direct Cache Access
