@@ -5,6 +5,9 @@ Today CPU cores are very fast in comparision to memory access. This can be a bot
 
 ### Bypassing Cache
 By default nothing is directly written to memory. Everything goes through cache, if our cache space is full we replace older cache lines. In some situations we may have data that will not be accessed again anytime soon or frequently, making it a waste to use cache space. In these situations we can bypass cache and write directly to memory.
+
+![Non Temporal Store](./images/nonTemporalStore.png)
+
 A simple example is we intialize two matrixs, matA and matB. We write values to matA and then write values to matB. After writing values to matB, we want to read from matA. In this case since we will not be reading values of matB anytime soon we can make use of intel's non temporal stores to write matB directly to memory. The simple example is roughly 3 times faster.
 
 ### Fitting into Cache Lines
