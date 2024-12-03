@@ -1,16 +1,14 @@
-# cpu-memory-optimizations
-Today CPU cores are very fast in comparision to memory access. This can be a bottleneck. Below are a few techniques that can be used to optimize performance.
-
+# CPU Memory Optimizations
+Today CPU cores are very fast in comparision to memory access. Below are a few techniques that can be used to reduce memory access time.
 ### Write Combining
-When we attempt to write past L1 cache we write to a line buffer before writing to the next cache level. Depending on your hardware there are a limited number of buffers we can write to, each one of these buffers can combine data written to the same address. This is known as write combining.
-We want to fill these buffers as much as possible to reduce the amount of writes we perform.
+When we attempt to write past L1 cache we write to a line buffer before the next cache level. Depending on the hardware there are a limited number of buffers that can be written to. Each of these buffers correspond to unqiue addresses and can combine data written to the same address. This is known as write combining. We want to fill these buffers as much as possible to reduce the amount of writes we perform.
 
 ![Write Combine Buffer](./images/WCB.png)
-In the example above we have 6 buffers. We can see the difference between writing to 6 buffers vs 7 or more. Once a new memory location is introduced we will be forced to write to cache and not be able to fill up our buffers to the mmax.
+In the example above we have 6 buffers. Illustrated is the difference between writing to 6 unqiue addresses vs 7 or more. Once a new memory location is introduced we will be forced to write to cache before we can fill the buffers to the max.
 
-`NOT TAKING FULL ADVATAGE OF WRITE COMBINING TIME TAKEN: 0.927197`
-`WRITE COMBINING TIME TAKEN: 0.253306`
-We can observe a rough 3x performance improvement by better utilizing write combining.
+`NOT TAKING FULL ADVATAGE OF WRITE COMBINING TIME TAKEN: 0.927197` <br>
+`WRITE COMBINING TIME TAKEN: 0.253306` <br>
+We can observe a rough 3x performance improvement by better utilizing write combining in our simple example.
 
 ### Bypassing Cache
 By default nothing is directly written to memory. Everything goes through cache, if our cache space is full we replace older cache lines. In some situations we may have data that will not be accessed again anytime soon or frequently, making it a waste to use cache space. In these situations we can bypass cache and write directly to memory.
