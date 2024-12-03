@@ -1,5 +1,5 @@
 # cpu-memory-optimizations
-Today CPU cores are very fast in comparision to access to memory. This can be bottleneck. Below are a few techniques that can be used to optimize performance.
+Today CPU cores are very fast in comparision to memory access. This can be a bottleneck. Below are a few techniques that can be used to optimize performance.
 
 ### Write Combining
 
