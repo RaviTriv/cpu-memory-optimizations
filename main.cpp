@@ -2,7 +2,7 @@
 #include <cmath>
 #include <time.h>
 #include <stdio.h>
-#include <emmintrin.h>
+// #include <emmintrin.h>
 
 double time1, timedif;
 
@@ -83,7 +83,7 @@ void cacheBypass()
   {
     for (int j = 0; j < cols; j++)
     {
-      _mm_stream_si128(reinterpret_cast<__m128i *>(matrix2), _mm_set1_epi32(2));
+      //  _mm_stream_si128(reinterpret_cast<__m128i *>(matrix2), _mm_set1_epi32(2));
     }
   }
 
@@ -163,7 +163,6 @@ void writeCombining()
   int *a10 = new int[rows];
   int *a11 = new int[rows];
   int *a12 = new int[rows];
-
   for (int i = 0; i < rows; i++)
   {
     *(a1 + i) = 1;
@@ -183,7 +182,6 @@ void writeCombining()
     *(a11 + i) = 1;
     *(a12 + i) = 1;
   }
-
   delete[] a1;
   delete[] a2;
   delete[] a3;
@@ -204,7 +202,7 @@ int main()
   time1 = time1 / CLOCKS_PER_SEC;
 
   // Function to test
-
+  writeCombining();
   timedif = (((double)clock()) / CLOCKS_PER_SEC) - time1;
-  printf("TIME TAKEN: %f\n", timedif);
+  printf("WRITE COMBINING TIME TAKEN: %f\n", timedif);
 }
