@@ -27,7 +27,7 @@ In the `struct` above we use 4 bytes and then 8 bytes, for a consecutive total o
 
 ![Memory Hole](./images/cacheline.png)
 
-Instead we can organize are struct so that 2 shorts follow the int closing the 4 byte hole.
+If we organize our struct so that 2 shorts follow the int this can close the holes.
 
 ```
 struct noHole
