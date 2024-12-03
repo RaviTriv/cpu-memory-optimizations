@@ -65,11 +65,3 @@ This simple change allows us to make better use of the available space.
 ```
 
 *Note: CPU cache line and word size can differ by hardware.
-
-### notes
-optimizing cache access 
-
-
-Optimizing TLB usage
--> reduce number of pages, simply can result in less TLB misses
--> make lookup cheaper, reduce the number of higher level directory tables
