@@ -65,3 +65,12 @@ This simple change allows us to make better use of the available space.
 ```
 
 *Note: CPU cache line and word size can differ by hardware.
+
+### Huge Pages
+Programs are broken up into pieces known as pages, this is done so we can store parts of our program in memory and secondary storage. A page table stores the location of each page in physical memory. Retrieving address translations from our page table slow due to the several memory loads involved. However there's something known as a Translation Lookaside Buffer (TLB) which is a cache in the CPU dedicated to address translation. The TLB space is limited so we want to store as much as possible in there. A way to do this is by using larger page sizes. The default page size on most CPUs is 4KiB with suport for page sizes of 4MiB and 1GiB also included.
+
+If we have a progam of size 1Gib, that means we have `1073741824 / 4096 = 266144 pages of size 4KiB` or `1073741824 / 2097152 = 512 pages of size 2MiB`.
+
+It is evident with larger pages we have fewer addresses which in turn allows us to fit more into our Translation Lookaside Buffer.
+
+A larger page size is best suited for programs that deal with large amounts of data. A common issue with larger page sizes is dealing with memory fragmentation as there is less flexibility.
