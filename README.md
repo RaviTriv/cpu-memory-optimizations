@@ -58,7 +58,7 @@ struct noHole
 };
 ```
 
-This simple change allows us to make better use of the available space.
+This simple change allows us to make better use of the available space. Keep in mind fitting as much as possible into cache lines is not always the best solution, sometimes padding must be applied to prevent false sharing.
 
 ```
 /* size: 64, cachelines: 1, members: 6 */
@@ -74,3 +74,5 @@ If we have a progam of size 1Gib, that means we have `1073741824 / 4096 = 266144
 It is evident with larger pages we have fewer addresses which in turn allows us to fit more into our Translation Lookaside Buffer.
 
 A larger page size is best suited for programs that deal with large amounts of data. A common issue with larger page sizes is dealing with memory fragmentation as there is less flexibility.
+
+The simplest way to make use of huge pages is by enabling transparent huge pages `echo always > /sys/kernel/mm/transparent_hugepage/enabled`.
