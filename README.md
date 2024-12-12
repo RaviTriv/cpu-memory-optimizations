@@ -63,7 +63,7 @@ This simple change allows us to make better use of the available space.
 ```
 /* size: 64, cachelines: 1, members: 6 */
 ```
- Keep in mind fitting as much as possible into cache lines is not always the best solution, sometimes padding must be applied to prevent false sharing.
+Keep in mind fitting as much as possible into cache lines is not always the best solution, sometimes padding must be applied to prevent false sharing. <br>
 *Note: CPU cache line and word size can differ by hardware.
 
 ### Huge Pages
